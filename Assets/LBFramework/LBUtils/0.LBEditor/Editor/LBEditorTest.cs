@@ -12,6 +12,7 @@ namespace LBFramework.LBEditor
             {
                 fontSize = 30
             });
+            GUILayout.Button("LianBai");
         }
     }
 }
