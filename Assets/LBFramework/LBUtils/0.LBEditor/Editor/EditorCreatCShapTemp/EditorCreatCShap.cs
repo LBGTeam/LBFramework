@@ -19,7 +19,7 @@ namespace LBFramework.LBEditor
                 GetSelectedPathOrFallBack()+"/New Script.cs",
                 null,
                 "Assets/LBFramework/LBUtils/0.LBEditor/" +
-                "Editor/EditorCreatCShapTemp/CShapTemp.txt"         // 只需要在此文件夹下创建你需要的模板，命名与EventCSClass.cs一致就行
+                "Editor/EditorCreatCShapTemp/CShapTemp/LBFTemp.txt"         // 只需要在此文件夹下创建你需要的模板，命名与EventCSClass.cs一致就行
             );
 
         }
