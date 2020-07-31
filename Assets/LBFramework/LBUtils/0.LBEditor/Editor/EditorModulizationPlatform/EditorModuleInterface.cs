@@ -21,7 +21,7 @@ namespace LBFramework.LBEditor
             this.hightScale = hightScale;
         }
     }
-    public abstract class EditorModuleInterface : EditorWindow
+    public abstract class EditorModuleInterface : EditorWindow,IEditorPlatformModule
     {
         private EditorModuleContainer mContainer;
         
@@ -61,6 +61,10 @@ namespace LBFramework.LBEditor
                 }
                 GUILayout.EndHorizontal();
             }
+        }
+
+        public void OnGUI()
+        {
         }
     }
 }

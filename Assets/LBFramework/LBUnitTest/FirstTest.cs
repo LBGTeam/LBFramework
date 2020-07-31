@@ -2,7 +2,7 @@
 using NSubstitute;
 using NUnit.Framework;
 
-namespace LBFramework.Nunit
+namespace LBFramework.NUnitTest
 {
     public class FirstTest
     {

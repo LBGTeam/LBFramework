@@ -3,7 +3,7 @@ using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
 
-namespace LBFramework.Nunit
+namespace LBFramework.NUnitTest
 {
     public class EditorCreanScriptTest : EditorCreatScript
     {

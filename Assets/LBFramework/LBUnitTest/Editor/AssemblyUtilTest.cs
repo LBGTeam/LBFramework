@@ -1,10 +1,11 @@
 ﻿using UnityEditor;
 using UnityEngine;
 using LBFramework.LBEditor;
+using NUnit.Framework;
 
-namespace LBFramework.Nunit
+namespace LBFramework.NUnitTest
 {
-    public class AssemblyUtilTest:EditorModuleInterface,IEditorPlatformModule
+    public class AssemblyUtilTest:EditorModuleInterface
     {
         [MenuItem("LBFramework/LBUtils/AssemblyUtilTest")]
         public static void Open()
@@ -22,7 +23,7 @@ namespace LBFramework.Nunit
                 );
         }
     }
-    public class AssemblyUtilTest2:EditorModuleInterface,IEditorPlatformModule
+    public class AssemblyUtilTest2:EditorModuleInterface
     {
         [MenuItem("LBFramework/LBUtils/AssemblyUtilTest2")]
         public static void Open()
