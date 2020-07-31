@@ -11,12 +11,14 @@ namespace LBFramework.LBEditor
         public string label;
         public Action onClick;
         public float widthScale;
+        public float hightScale;
 
-        public LayoutComp(string label, Action onClick, float widthScale = 1)
+        public LayoutComp(string label, Action onClick, float widthScale = 100,float hightScale = 20)
         {
             this.label = label;
             this.onClick = onClick;
             this.widthScale = widthScale;
+            this.hightScale = hightScale;
         }
     }
     public abstract class EditorModuleInterface : EditorWindow
@@ -42,7 +44,7 @@ namespace LBFramework.LBEditor
             
             editorPlatform.Show();
         }
-        public void DrawLayoutBtn(int columns,params LayoutComp[] layComps)
+        public void DrawLayoutHorizontalBtn(int columns,params LayoutComp[] layComps)
         {
             var i = 0;
             while (i < layComps.Length)
@@ -51,7 +53,7 @@ namespace LBFramework.LBEditor
                 for (int j = 0; j < columns; j++)
                 {
                     var laycom = layComps[i];
-                    if (GUILayout.Button(laycom.label,GUILayout.Height(laycom.widthScale*100)))
+                    if (GUILayout.Button(laycom.label,GUILayout.Height(laycom.hightScale)))
                         layComps[i].onClick();
                     i++;
                     if (i >= layComps.Length) 

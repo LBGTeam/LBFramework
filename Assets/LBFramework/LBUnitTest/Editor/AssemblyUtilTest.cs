@@ -13,7 +13,7 @@ namespace LBFramework.Nunit
         }
         public void OnGUI()
         {
-            DrawLayoutBtn(3,
+            DrawLayoutHorizontalBtn(3,
                 new LayoutComp("LianBai_01",()=>{Debug.LogError("LianBai_01");}),
                 new LayoutComp("LianBai_02",()=>{Debug.LogError("LianBai_02");}),
                 new LayoutComp("LianBai_03",()=>{Debug.LogError("LianBai_03");}),
@@ -22,7 +22,7 @@ namespace LBFramework.Nunit
                 );
         }
     }
-    /*public class AssemblyUtilTest2:EditorModuleInterface,IEditorPlatformModule
+    public class AssemblyUtilTest2:EditorModuleInterface,IEditorPlatformModule
     {
         [MenuItem("LBFramework/LBUtils/AssemblyUtilTest2")]
         public static void Open()
@@ -31,7 +31,7 @@ namespace LBFramework.Nunit
         }
         public void OnGUI()
         {
-            DrawLayoutBtn(3,
+            DrawLayoutHorizontalBtn(3,
                 new LayoutComp("LianBai_01",()=>{Debug.LogError("LianBai_01");}),
                 new LayoutComp("LianBai_02",()=>{Debug.LogError("LianBai_02");}),
                 new LayoutComp("LianBai_03",()=>{Debug.LogError("LianBai_03");}),
@@ -40,5 +40,5 @@ namespace LBFramework.Nunit
                 new LayoutComp("LianBai_06",()=>{Debug.LogError("LianBai_06");})
             );
         }
-    }*/
+    }
 }
