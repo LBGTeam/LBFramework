@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Assertions;
+using Object = System.Object;
 
 namespace LBFramework.LBEditor
 {
@@ -23,7 +25,7 @@ namespace LBFramework.LBEditor
             return mInstances.OfType<T>()
                 .ToList();
         }
-        public void Init()
+        public void Init() 
         {
             // 清空掉之前的实例
             mInstances.Clear();
