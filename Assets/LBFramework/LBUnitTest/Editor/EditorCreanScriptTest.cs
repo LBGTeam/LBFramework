@@ -5,19 +5,23 @@ using UnityEngine;
 
 namespace LBFramework.NUnitTest
 {
-    public class EditorCreanScriptTest : EditorCreatScript
+    public class EditorCreanScriptTest
     {
-        [MenuItem("Assets/Create/LBFCShap",false,80)]
+        //模板存放路径
+        public static string TempPath = "Assets/LBFramework/LBUnitTest/Editor/CShapTemp/";
+        
+        //创建框架普通类的脚本
+        [MenuItem("Assets/Create/C# LBFScript",false,80)]
         public static void CreatLBFCShap()
         {
-            ProjectWindowUtil.StartNameEditingIfProjectWindowExists(0,
-                ScriptableObject.CreateInstance<CraetEventCSScriptAsset>(),
-                GetSelectedPathOrFallBack()+"/New Script.cs",
-                null,
-                "Assets/LBFramework/LBUnitTest/" +
-                "Editor/CShapTemp/LBFCSTemp.txt"         // 只需要在此文件夹下创建你需要的模板，命名与EventCSClass.cs一致就行
-            );
-
+            EditorCreatScript.Instance.CreatScriptByTemp(TempPath+"LBFClassCS.txt");
+        }
+        
+        //创建框架静态类的脚本
+        [MenuItem("Assets/Create/C# Static LBFScript",false,80)]
+        public static void CreatLBFCShapStaticScript()
+        {
+            EditorCreatScript.Instance.CreatScriptByTemp(TempPath+"LBFStaticCS.txt");
         }
     }
 }

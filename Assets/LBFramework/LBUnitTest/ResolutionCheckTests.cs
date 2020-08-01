@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using LBFramework.LBUtils;
+using NUnit.Framework;
 using UnityEngine;
 
 namespace LBFramework.NUnitTest

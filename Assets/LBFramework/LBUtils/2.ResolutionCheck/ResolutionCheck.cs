@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace LBFramework
+namespace LBFramework.LBUtils
 {
     //检测屏幕的分辨率
     public class ResolutionCheck

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using NUnit.Framework;
 
-namespace LBFramework
+namespace LBFramework.LBUtils
 {
     public class AssemblyUtil
     {

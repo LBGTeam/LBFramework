@@ -13,7 +13,7 @@ namespace LBFramework.LBEditor
         /// <summary>
         /// 打开窗口
         /// </summary>
-        [MenuItem("LBFramework/LBUtils/0.LBEditor")]
+        /*[MenuItem("LBFramework/LBUtils/0.LBEditor")]
         public static void Open()
         {
             var editorPlatform = GetWindow<EditorModulizationPlatformEditor>();
@@ -30,7 +30,7 @@ namespace LBFramework.LBEditor
             editorPlatform.mContainer.Init();
 
             editorPlatform.Show();
-        }
+        }*/
 
         private void OnGUI()
         {

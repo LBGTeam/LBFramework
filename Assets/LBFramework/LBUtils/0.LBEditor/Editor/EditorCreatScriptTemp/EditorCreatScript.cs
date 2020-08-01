@@ -11,8 +11,19 @@ namespace LBFramework.LBEditor
 {
     public class EditorCreatScript
     {
+        private static EditorCreatScript mInstacne; //EditorCreatScript脚本单例
+        EditorCreatScript(){}    //通过private阻止外界创建单例
+        public static EditorCreatScript Instance    //外界调用的EditorCreatScript单例接口
+        {
+            get
+            {
+                if (mInstacne==null)
+                    mInstacne = new EditorCreatScript();
+                return mInstacne;
+            }
+        }
         //获取选中的文件夹路径
-        public static string GetSelectedPathOrFallBack()
+        public string GetSelectedPathOrFallBack()
         {
             string path = "Assets";
             foreach (UnityEngine.Object obj  in Selection.GetFiltered(typeof(UnityEngine.Object),SelectionMode.Assets))
@@ -25,6 +36,16 @@ namespace LBFramework.LBEditor
                 }
             }
             return path;
+        }
+        //根据路径模板创建脚本,传入参数需要带模板文件格式后缀
+        public void CreatScriptByTemp(string FilePath)
+        {
+            ProjectWindowUtil.StartNameEditingIfProjectWindowExists(0,
+                    ScriptableObject.CreateInstance<CraetEventCSScriptAsset>(),
+                    GetSelectedPathOrFallBack()+"/New Script.cs",
+                    null,
+                    FilePath         // 只需要在此文件夹下创建你需要的模板，命名与EventCSClass.cs一致就行
+                );
         }
     }
     public //定义一个创建资源的Action类并实现其Action方法
