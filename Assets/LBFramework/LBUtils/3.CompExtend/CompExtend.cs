@@ -150,6 +150,32 @@ namespace LBFramework.LBUtils
         }
         
         #endregion
-        
+
+        #region Active
+
+        public static T Show<T>(this T self) where T : Component
+        {
+            self.gameObject.SetActive(true);
+            return self;
+        }
+        public static T Hide<T>(this T self) where T : Component
+        {
+            self.gameObject.SetActive(false);
+            return self;
+        }
+
+        public static GameObject Show(this GameObject self)
+        {
+            self.SetActive(true);
+            return self;
+        }
+
+        public static GameObject Hide(this GameObject self)
+        {
+            self.SetActive(false);
+            return self;
+        }
+
+        #endregion
     }
 }
