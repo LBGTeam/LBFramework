@@ -5,6 +5,8 @@ namespace LBFramework.LBUtils
 {
     public static class CompExtend
     {
+        #region SetPos
+        
         //设置世界坐标X的值
         public static T PositionX<T>(this T self, float x) where T : Component
         {
@@ -119,5 +121,35 @@ namespace LBFramework.LBUtils
             transform.localPosition = localPosition;                    //重新给位置信息赋值
             return self;
         }
+        #endregion
+
+        #region Indentity
+        
+        //Transfroam本地数据重置
+        public static T LocalIdentity<T>(this T self) where T : Component
+        {
+            var transform = self.transform;
+
+            transform.localPosition = Vector3.zero;
+            transform.localRotation = Quaternion.identity;
+            transform.localScale = Vector3.one;
+
+            return self;
+        }
+        
+        //Transfroam世界数据重置
+        public static T Identity<T>(this T self) where T : Component
+        {
+            var transform = self.transform;
+
+            transform.position = Vector3.zero;
+            transform.rotation = Quaternion.identity;
+            transform.localScale = Vector3.one;
+            
+            return self;
+        }
+        
+        #endregion
+        
     }
 }
