@@ -69,8 +69,7 @@ namespace LBFramework.LBUtils
             TiggerEvent(eventId,eventArg);
             //如果用对象池，在这里就可以回收
         }
-
-
+        
         private void TiggerEvent(int eventId, LBEventComArg arg)
         {
             if (id2HandlerDict.TryGetValue(eventId, out HashSet<ILBEventHandler> handlerSet))
