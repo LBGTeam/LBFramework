@@ -1,14 +1,19 @@
-﻿using UnityEngine;
+﻿using LBFramework.LBUtils;
+using NUnit.Framework;
+using UnityEngine;
+using Assert = UnityEngine.Assertions.Assert;
 
-namespace LBFramework.LBUtils
+namespace LBFramework.NUnitTest
 {
     public enum LBEventTestType
     {
-        EventTestType
+        EventTestType = 100,
     }
-    public class LBEventSystemTest:ILBEventHandler
+
+    public class LBEventSystemClass:ILBEventHandler
     {
-        private string testValue;
+        public int testValue = 5;
+        
         public void HandleEvent(int eventId, LBEventComArg arg = null)
         {
             switch ((LBEventTestType)eventId)
@@ -18,10 +23,17 @@ namespace LBFramework.LBUtils
                     break;
             }
         }
-
+    }
+    public class LBEventSystemTest
+    {
+        [Test]
         public void EventTest()
         {
-            //LBEventDispatcher
+            LBEventSystemClass testClass = new LBEventSystemClass();
+            LBEventDispatcher.Instabce.AddListener((int)LBEventTestType.EventTestType, testClass);
+            LBEventDispatcher.Instabce.SendEvent((int)LBEventTestType.EventTestType,10);
+            
+            Assert.AreEqual(testClass.testValue,10);
         }
     }
 }

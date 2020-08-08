@@ -2,7 +2,7 @@
 using LBFramework.LBUtils;
 using NUnit.Framework;
 
-namespace LBFramework.LBUtils
+namespace LBFramework.NUnitTest
 {
     public class TestSingletonClass : Singleton<TestSingletonClass>
     {

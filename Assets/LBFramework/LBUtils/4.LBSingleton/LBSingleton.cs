@@ -17,6 +17,9 @@ namespace LBFramework.LBUtils
         protected static T mInstance;
         private static object mLock = new object();        //用来锁定，防止多线程问题
 
+        protected Singleton()
+        {
+        }
         public static T Instabce
         {
             get
