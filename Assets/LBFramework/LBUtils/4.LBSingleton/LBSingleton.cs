@@ -5,7 +5,7 @@ using UnityEngine;
 using Object = UnityEngine.Object;
 #endif
 
-namespace LBFramework.Singleton
+namespace LBFramework.LBUtils
 {
     public interface ISingleton
     {
