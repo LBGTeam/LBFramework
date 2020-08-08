@@ -8,11 +8,15 @@ namespace LBFramework.LBUtils
     //自定义事件委托类型
     public delegate void CustomEventHandler(LBEventComArg arg = null);
     
-    public class LBEventDispatcher
+    public class LBEventDispatcher:Singleton<LBEventDispatcher>
     {
         private readonly Dictionary<int, HashSet<ILBEventHandler>> id2HandlerDict = new Dictionary<int, HashSet<ILBEventHandler>>();
         private readonly Dictionary<int, CustomEventHandler> id2DeleDict = new Dictionary<int, CustomEventHandler>();
 
+        private LBEventDispatcher()
+        {
+            
+        }
         public void AddListener(int eventId, ILBEventHandler handler)
         {
             if (!id2HandlerDict.TryGetValue(eventId, out HashSet<ILBEventHandler> handlerSet))
