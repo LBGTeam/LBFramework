@@ -1,0 +1,9 @@
+using UnityEngine;
+
+namespace LBFramework
+{
+    public class #NAME
+    {
+    
+    }
+}
