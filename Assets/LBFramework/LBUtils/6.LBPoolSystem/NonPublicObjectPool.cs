@@ -86,7 +86,7 @@ namespace LBFramework.LBUtils
             }
             t.IsRecycled = true;                //标记为已经被回收
             t.OnRecycled();                    //相应被回收的事件
-            mCacheQueue.Equals(t);            //回收并放回原来的队列中
+            mCacheQueue.Enqueue(t);            //回收并放回原来的队列中
             return true;
         }
         

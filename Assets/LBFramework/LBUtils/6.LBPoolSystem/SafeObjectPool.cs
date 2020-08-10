@@ -8,7 +8,8 @@ namespace LBFramework.LBUtils
     {
         #region Singleton
         void ISingleton.OnInitSingleton(){}
-        protected SafeObjectPool()
+
+        public SafeObjectPool()
         {
             mFactory = new DefaultObjectFactory<T>();
         }
@@ -53,16 +54,16 @@ namespace LBFramework.LBUtils
         //初始化对象池的数量
         public void Init(int maxCount, int initCount)
         {
-            MaxCacheCount = maxCount;
             if (maxCount > 0)
             {
                 initCount = Math.Min(maxCount, initCount);
+                mMaxCount = maxCount;
             }
             if (CurCount < initCount)
             {
                 for (var i = CurCount; i < initCount; ++i)
                 {
-                    Recycle(new T());
+                    Recycle(mFactory.Create());
                 }
             }
         }
@@ -93,10 +94,9 @@ namespace LBFramework.LBUtils
                     return false;
                 }
             }
-
             t.IsRecycled = true;
             t.OnRecycled();
-            mCacheQueue.Equals(t);
+            mCacheQueue.Enqueue(t);
             return true;
         }
         
