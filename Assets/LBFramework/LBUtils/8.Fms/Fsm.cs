@@ -168,6 +168,38 @@ namespace LBFramework.LBUtils
             }
             return fsm;
         }
+        /// <summary>
+        /// 创建有限状态机
+        /// </summary>
+        /// <param name="name">有限状态机的名字</param>
+        /// <param name="owner">有限状态机拥有者</param>
+        /// <param name="states">初始化所有的有限状态机**状态**</param>
+        public static Fsm<T> Create(string name, T owner, params FsmState<T>[] states)
+        {
+            if (owner == null || states == null || states.Length < 1)
+            {
+                return null;
+            }
+            Fsm<T> fsm = new Fsm<T>();
+            fsm.fsmName = name;
+            fsm.mOwner = owner;
+            fsm.mIsDestroyed = false;
+            foreach (FsmState<T> state in states)
+            {
+                if (state == null)
+                {
+                    return null;
+                }
+                Type stateType = state.GetType();
+                if (fsm.mStateDic.ContainsKey(stateType))
+                {
+                    return null;
+                }
+                fsm.mStateDic.Add(stateType, state);
+                state.OnInit(fsm);
+            }
+            return fsm;
+        }
         // 开始有限状态机。
         public void Start(Type stateType)
         {

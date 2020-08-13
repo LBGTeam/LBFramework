@@ -13,7 +13,7 @@ namespace LBFramework.LBUtils
         
         /// 检查是否存在有限**状态机**
         /// <typeparam name="T">状态机持有者类型</typeparam>
-        bool hasFsm<T>() where T : class;
+        bool HasFsm<T>() where T : class;
         /// 检查是否存在有限**状态机**
         /// <typeparam name="T">状态机持有者类型</typeparam>
         /// <param name="name">状态机的名称</param>
@@ -30,7 +30,7 @@ namespace LBFramework.LBUtils
         
         /// 检查是否存在有限**状态机**
         /// <param name="ownerType">状态机持有者类型</param>
-        bool hasFsm(Type ownerType);
+        bool HasFsm(Type ownerType);
         /// 检查是否存在有限**状态机**
         /// <param name="ownerType">状态机的持有者类型</param>
         /// <param name="name">状态机的名称</param>
