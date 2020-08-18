@@ -21,7 +21,7 @@ namespace LBFramework.LBUtils
     }
     public interface IPoolType
     {
-        void Recycle2Cache();        //回收缓存
+        void Recycle2Cache();        //对象池回收进缓存
     }
     
     #region Factory
