@@ -81,9 +81,9 @@ namespace LBFramework.LBUtils
 
 #if UNITY_5_6_OR_NEWER
     [Obsolete]
-    public class QMonoSingletonPath : MonoSingletonPath
+    public class LBMonoSingletonPath : MonoSingletonPath
     {
-        public QMonoSingletonPath(string pathInHierarchy) : base(pathInHierarchy)
+        public LBMonoSingletonPath(string pathInHierarchy) : base(pathInHierarchy)
         {
         }
     }
