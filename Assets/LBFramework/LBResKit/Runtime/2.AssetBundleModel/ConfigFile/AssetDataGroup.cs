@@ -152,6 +152,37 @@ namespace LBFramework.ResKit
             result = unit.abDepends;
             return true;
         }
+        /// <summary>
+        /// 添加AB资源
+        /// </summary>
+        /// <param name="name">资源名字</param>
+        /// <param name="depends">资源的依赖</param>
+        public int AddAssetBundleName(string name, string[] depends)
+        {
+            //判断名字是否为空，为空直接返回
+            if (string.IsNullOrEmpty(name))
+                return -1;
+            //判断保存依赖的组是不是空，如果为空创建一个进行初始化
+            if (mABUnitArray == null)
+                mABUnitArray = new List<ABUnit>();
+            //对象池创建一个查找关键字资源的对象，将名字传进去
+            var resSearchRule = ResSearchKeys.Allocate(name);
+            //通过关键字对象进行查找资源
+            AssetData config = GetAssetData(resSearchRule);
+            //回收刚才申请的对象
+            resSearchRule.Recycle2Cache();
+            //如果资源不是空说明添加过了，直接返回资源的索引
+            if (config != null)
+                return config.AssetBundleIndex;
+            //将资源添加进依赖资源组中
+            mABUnitArray.Add(new ABUnit(name, depends));
+            //设置好资源的索引
+            int index = mABUnitArray.Count - 1;
+            //将资源添加进去
+            AddAssetData(new AssetData(name, ResLoadType.AssetBundle, index,null));
+            //返回索引就是添加的位置
+            return index;
+        }
         //获取序列化资源
         public SerializeData GetSerializeData()
         {
