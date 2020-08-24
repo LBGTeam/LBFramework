@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using JetBrains.Annotations;
+using LBFramework.Log;
 using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
@@ -23,7 +24,7 @@ namespace LBFramework.LBEditor
         {
             filterList = new List<DefineFilter>()
             {
-                new DefineFilter("test1","TEST_01"),
+                new DefineFilter("是否使用打印日志","USE_LBLOGWRAPPER"),
                 new DefineFilter("test2","TEST_02"),
                 new DefineFilter("test3","TEST_03"),
                 new DefineFilter("test4","TEST_04"),
@@ -85,6 +86,10 @@ namespace LBFramework.LBEditor
             }
             GUILayout.EndHorizontal();
             DrawDefineFilterList();
+            if (GUI.changed)
+            {
+                
+            }
         }
         
         void InitFilterListDrawer()
