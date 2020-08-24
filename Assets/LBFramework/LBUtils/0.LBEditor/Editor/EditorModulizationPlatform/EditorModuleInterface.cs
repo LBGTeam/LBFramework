@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using UnityEditor;
+using UnityEditorInternal;
 using UnityEngine;
 
 namespace LBFramework.LBEditor
@@ -21,9 +22,26 @@ namespace LBFramework.LBEditor
             this.hightScale = hightScale;
         }
     }
+
+    [System.Serializable]
+    public class DefineFilter
+    {
+        public bool valid = false;
+        public string name = string.Empty;
+        public string value = String.Empty;
+        
+        public DefineFilter() { }
+        public DefineFilter(string name = "名字未进行初始化", string value = "请输入正确的值")
+        {
+            this.name = name;
+            this.value = value;
+        }
+    }
     public abstract class EditorModuleInterface : EditorWindow,IEditorPlatformModule
     {
         private EditorModuleContainer mContainer;
+        protected ReorderableList mReordeList;
+        protected List<DefineFilter> filterList;
         
         public static void OpenGUI<Type>() where Type : EditorModuleInterface
         {
@@ -62,6 +80,23 @@ namespace LBFramework.LBEditor
                 GUILayout.EndHorizontal();
             }
         }
+
+        public void DrawDefineFilterList()
+        {
+            GUILayout.BeginVertical();
+            GUILayout.BeginScrollView(Vector2.zero);
+            mReordeList.DoLayoutList();
+            GUILayout.EndScrollView();
+            GUILayout.EndVertical();
+            
+            if (GUI.changed)
+            {
+                
+            }
+        }
+        
+        
+        
 
         public void OnGUI()
         {
