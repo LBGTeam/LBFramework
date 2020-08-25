@@ -141,7 +141,7 @@ namespace LBFramework.ResKit
                 var outResult = new List<string>();
 
                 // 未进行过热更
-                if (ResKit.LoadResFromStreammingAssetsPath)
+                if (AssetBundleSettings.LoadAssetResFromStreammingAssetsPath)
                     FileMgr.Instance.GetFileInInner(AssetBundleSettings.AssetBundleConfigFile.FileName, outResult);
                 // 进行过热更
                 else

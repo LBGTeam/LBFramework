@@ -222,7 +222,7 @@ namespace LBFramework.ResKit
         //同步加载资源
         public virtual bool LoadSync() { return false; }
         //异步加载资源
-        public void LoadAsync() { }
+        public virtual void LoadAsync() { }
         //获取依赖资源集合
         public virtual string[] GetDependResList() { return null; }
         //是否加载图片

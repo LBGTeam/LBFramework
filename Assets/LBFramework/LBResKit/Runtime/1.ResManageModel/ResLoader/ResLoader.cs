@@ -477,7 +477,7 @@ namespace LBFramework.ResKit
                 //遍历资源列表里的资源
                 for (var i = mResList.Count - 1; i >= 0; --i)
                 {
-                    //如果资源不加载图片
+                    //标记资源是否加载图片
                     if (mResList[i].UnloadImage(flag))
                     {
                         //等待加载资源列表里移除本资源

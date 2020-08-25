@@ -1,5 +1,8 @@
 ﻿using System;
+using System.IO;
+using System.Collections;
 using System.Collections.Generic;
+using LBFramework.Log;
 using UnityEngine;
 
 namespace LBFramework.ResKit
@@ -49,6 +52,8 @@ namespace LBFramework.ResKit
             //置空资源数据表
             mAssetDataTable = null;
         }
+        
+
         //添加AssetBundled的名字
         public int AddAssetBundleName(string name, string[] depends, out AssetDataGroup group)
         {
@@ -74,6 +79,49 @@ namespace LBFramework.ResKit
             //资源组添加AB资源名字和依赖
             return group.AddAssetBundleName(name, depends);
         }
+        //通过url获取所有资源的依赖
+        public string[] GetAllDependenciesByUrl(string url)
+        {
+            //通过url获取ab的名字
+            var abName = AssetBundleSettings.AssetBundleUrl2Name(url);
+            //遍历所有的资源数据组
+            for (var i = mAllAssetDataGroup.Count - 1; i >= 0; --i)
+            {
+                string[] depends;
+                //遍历当前资源组获取所有的资源依赖的名字
+                if (!mAllAssetDataGroup[i].GetAssetBundleDepends(abName, out depends))
+                {
+                    continue;
+                }
+                //返回依赖的名字集合
+                return depends;
+            }
+
+            return null;
+        }
+        
+        //通过关键字资源对象获取对应的资源
+        public AssetData  GetAssetData(ResSearchKeys resSearchKeys)
+        {
+            if (mAssetDataTable == null)
+            {
+                //创建资源表
+                mAssetDataTable = new AssetDataTable();
+                
+                //遍历所有的资源组
+                for (var i = mAllAssetDataGroup.Count - 1; i >= 0; --i)
+                {
+                    //遍历当前资源组的资源
+                    foreach (var assetData in mAllAssetDataGroup[i].AssetDatas)
+                    {
+                        //将资源添加到表里
+                        mAssetDataTable.Add(assetData);
+                    }
+                }
+            }
+            //资源表通过资源关键字对象获取对应的资源
+            return mAssetDataTable.GetAssetDataByResSearchKeys(resSearchKeys);
+        }
         
         //获得资源所在的组
         private AssetDataGroup GetAssetDataGroup(string key)
@@ -89,6 +137,112 @@ namespace LBFramework.ResKit
             }
             //找不到就返回空
             return null;
+        }
+        
+        //从文件中加载数据
+        public virtual void LoadFromFile(string path)
+        {
+            //反序列化资源对象
+            var data = SerializeHelper.DeserializeBinary(FileMgr.Instance.OpenReadStream(path));
+
+            //如果为空直接返回
+            if (data == null)
+                return;
+            //将资源转化为序列化资源
+            var sd = data as SerializeData;
+
+            if (sd == null)
+                return;
+            //设置序列化资源
+            SetSerizlizeData(sd);
+        }
+        //异步从文件中获取资源
+        public virtual IEnumerator LoadFromFileAsync(string path)
+        {
+            using (var www = new WWW(path))
+            {
+                yield return www;
+
+                if (www.error != null)
+                {
+                    LBLogWrapper.LogError("Failed Deserialize AssetDataTable:" + path + " Error:" + www.error);
+                    yield break;
+                }
+                var stream = new MemoryStream(www.bytes);
+                var data = SerializeHelper.DeserializeBinary(stream);
+
+                if (data == null)
+                {
+                    LBLogWrapper.LogError("Failed Deserialize AssetDataTable:" + path);
+                    yield break;
+                }
+                var sd = data as SerializeData;
+                if (sd == null)
+                {
+                    LBLogWrapper.LogError("Failed Load AssetDataTable:" + path);
+                    yield break;
+                }
+                LBLogWrapper.Info("Load AssetConfig From File:" + path);
+                SetSerizlizeData(sd);
+            }
+        }
+        //将需要序列化的资源保存到地址中
+        public virtual void Save(string outPath)
+        {
+            //创建一个新的序列化数据对象
+            SerializeData sd = new SerializeData
+            {
+                AssetDataGroup = new AssetDataGroup.SerializeData[mAllAssetDataGroup.Count]
+            };
+            //遍历所有的资源组添加到序列化数据中
+            for (var i = 0; i < mAllAssetDataGroup.Count; ++i)
+            {
+                sd.AssetDataGroup[i] = mAllAssetDataGroup[i].GetSerializeData();
+            }
+            //将序列化资源系列化到对应的地址中
+            if (SerializeHelper.SerializeBinary(outPath, sd))
+            {
+                LBLogWrapper.LogInfo("Success Save AssetDataTable:" + outPath);
+            }
+            else
+            {
+                LBLogWrapper.LogInfo("Failed Save AssetDataTable:" + outPath);
+            }
+        }
+        
+        //设置序列化资源
+        protected void SetSerizlizeData(SerializeData data)
+        {
+            //如果为空直接返回
+            if (data == null || data.AssetDataGroup == null)
+                return;
+            //遍历序列化出来的资源依次加入资源组中
+            for (int i = data.AssetDataGroup.Length - 1; i >= 0; --i)
+            {
+                mAllAssetDataGroup.Add(BuildAssetDataGroup(data.AssetDataGroup[i]));
+            }
+            //如果资源表为空
+            if (mAssetDataTable == null)
+            {
+                //创建一个新的资源数据表
+                mAssetDataTable = new AssetDataTable();
+                //遍历所有的资源组
+                foreach (var serializeData in data.AssetDataGroup)
+                {
+                    //遍历每个资源组中的所有资源
+                    foreach (var assetData in serializeData.assetDataArray)
+                    {
+                        //将资源添加到资源表中
+                        mAssetDataTable.Add(assetData);
+                    }
+                }
+            }
+        }
+        //建立资源数据组
+        private AssetDataGroup BuildAssetDataGroup(AssetDataGroup.SerializeData data)
+        {
+            //返回一个新生成的资源数据组
+            return new AssetDataGroup(data);
         }
         
         //从AB资源中获取关键的key
