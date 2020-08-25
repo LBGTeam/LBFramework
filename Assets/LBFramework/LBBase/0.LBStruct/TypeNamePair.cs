@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace LBFramework.LBData
+namespace LBFramework.LBBase
 {
     public struct TypeNamePair
     {

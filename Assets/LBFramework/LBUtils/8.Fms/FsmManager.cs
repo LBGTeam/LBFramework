@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using LBFramework.LBData;
+using LBFramework.LBBase;
 using UnityEngine;
 
 namespace LBFramework.LBUtils
