@@ -8,7 +8,7 @@ namespace LBFramework.LBUtils
     {
         #region Singleton
         
-        void ISingleton.OnInitSingleton(){}
+        void ISingleton.OnSingletonInit(){}
 
         public static NonPublicObjectPool<T> Instance
         {

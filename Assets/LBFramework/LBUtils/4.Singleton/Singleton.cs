@@ -9,7 +9,7 @@ namespace LBFramework.LBUtils
 {
     public interface ISingleton
     {
-        void OnInitSingleton();
+        void OnSingletonInit();
     }
 
     public abstract class Singleton<T> : ISingleton where T : Singleton<T>
@@ -20,7 +20,7 @@ namespace LBFramework.LBUtils
         protected Singleton()
         {
         }
-        public static T Instabce
+        public static T Instance
         {
             get
             {
@@ -34,7 +34,7 @@ namespace LBFramework.LBUtils
                 return mInstance;
             }
         }
-        public void OnInitSingleton() { }
+        public virtual void OnSingletonInit() { }
     }
     public static class SingletonCreator
     {
@@ -50,7 +50,7 @@ namespace LBFramework.LBUtils
 		    }
 		    // 通过构造函数，常见实例
 		    var retInstance = ctor.Invoke(null) as T;
-		    retInstance.OnInitSingleton();
+		    retInstance.OnSingletonInit();
 		    return retInstance;
 	    }
     }
@@ -146,6 +146,8 @@ namespace LBFramework.LBUtils
         {
             get { return mOnApplicationQuit; }
         }
+
+        public void OnSingletonInit() { }
     }
     //创建单例
     public static class MonoSingletonCreator
@@ -160,7 +162,7 @@ namespace LBFramework.LBUtils
 			//如果已经存在了就初始化并且返回
 			if (instance != null)
 			{
-				instance.OnInitSingleton();
+				instance.OnSingletonInit();
 				return instance;
 			}
 			//获取成员信息
@@ -184,7 +186,7 @@ namespace LBFramework.LBUtils
 					Object.DontDestroyOnLoad(obj);
 				instance = obj.AddComponent<T>();
 			}
-			instance.OnInitSingleton();
+			instance.OnSingletonInit();
 			return instance;
 		}
 		private static T CreateComponentOnGameObject<T>(string path, bool dontDestroy) where T : MonoBehaviour
