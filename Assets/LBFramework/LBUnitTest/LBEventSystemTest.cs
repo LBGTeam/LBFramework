@@ -30,8 +30,8 @@ namespace LBFramework.NUnitTest
         public void EventTest()
         {
             LBEventSystemClass testClass = new LBEventSystemClass();
-            LBEventDispatcher.Instabce.AddListener((int)LBEventTestType.EventTestType, testClass);
-            LBEventDispatcher.Instabce.SendEvent((int)LBEventTestType.EventTestType,10);
+            LBEventDispatcher.Instance.AddListener((int)LBEventTestType.EventTestType, testClass);
+            LBEventDispatcher.Instance.SendEvent((int)LBEventTestType.EventTestType,10);
             
             Assert.AreEqual(testClass.testValue,10);
         }

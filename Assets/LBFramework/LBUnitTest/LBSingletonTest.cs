@@ -17,8 +17,8 @@ namespace LBFramework.NUnitTest
         [Test]
         public void Test()
         {
-            TestSingletonClass objA = TestSingletonClass.Instabce;
-            TestSingletonClass objB = TestSingletonClass.Instabce;
+            TestSingletonClass objA = TestSingletonClass.Instance;
+            TestSingletonClass objB = TestSingletonClass.Instance;
             
             Assert.AreSame(objA, objB);
         }

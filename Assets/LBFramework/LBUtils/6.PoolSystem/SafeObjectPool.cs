@@ -7,7 +7,7 @@ namespace LBFramework.LBUtils
     public class SafeObjectPool<T>: Pool<T>, ISingleton where T : IPoolable, new()
     {
         #region Singleton
-        void ISingleton.OnInitSingleton(){}
+        void ISingleton.OnSingletonInit(){}
 
         public SafeObjectPool()
         {
