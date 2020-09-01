@@ -7,9 +7,6 @@ namespace LBFramework.ResKit
 {
     public class AssetBundleRes : Res
     {
-        
-        
-        
         //标记是否被卸载
         private bool mUnloadFlag = true;
         //依赖资源列表
