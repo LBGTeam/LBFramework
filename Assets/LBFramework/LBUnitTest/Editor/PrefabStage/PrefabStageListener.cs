@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using LBFramework.Log;
 using UnityEditor;
 using UnityEditor.Experimental.SceneManagement;
 using UnityEngine;
@@ -21,29 +22,13 @@ namespace LBFramework.LBEditor
             // Prefab被保存之后回调
             PrefabStage.prefabSaved += OnPrefabSaved;
             // 关闭Prefab编辑界面回调
-            PrefabStage.prefabStageClosing += OnPrefabStageClosing;
+            //PrefabStage.prefabStageClosing += OnPrefabStageClosing;
 
-            PrefabStage.prefabStageDirtied += OnPrefabStageDirtied;
+            //PrefabStage.prefabStageDirtied += OnPrefabStageDirtied;
 
-            PrefabUtility.prefabInstanceUpdated += OnUpdate;
+            //PrefabUtility.prefabInstanceUpdated += OnUpdate;
         }
-
-        private static void OnPrefabStageDirtied(PrefabStage obj)
-        {
-            
-        }
-
-        private static void OnUpdate(GameObject instance)
-        {
-            //Debug.LogError(instance.name);
-            //Debug.LogError(PrefabUtility.GetObjectOverrides(instance.transform.GetChild(3).gameObject).Count);
-
-        }
-
-        private static void OnPrefabStageClosing(PrefabStage prefab)
-        {
-        }
-
+        
         private static void OnPrefabSaved(GameObject prefab)
         {
             foreach (var prefabTf in oldPrefabTfDic)
@@ -69,6 +54,19 @@ namespace LBFramework.LBEditor
             newPrefabTfDic.Clear();
             LoadPrefab(prefab.prefabContentsRoot.transform,oldPrefabTfDic);
         }
+        /*private static void OnPrefabStageDirtied(PrefabStage obj)
+        {
+            
+        }
+        private static void OnUpdate(GameObject instance)
+        {
+            //Debug.LogError(instance.name);
+            //Debug.LogError(PrefabUtility.GetObjectOverrides(instance.transform.GetChild(3).gameObject).Count);
+
+        }
+        private static void OnPrefabStageClosing(PrefabStage prefab)
+        {
+        }*/
 
         private static void LoadPrefab(Transform prefabTf, Dictionary<Transform,int> preDic)
         {
