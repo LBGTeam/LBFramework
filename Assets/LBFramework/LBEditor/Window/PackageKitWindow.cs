@@ -147,7 +147,7 @@ namespace LBFramework.PackageKit
                 GUILayout.BeginHorizontal(Styles.in_title);
                 GUILayout.Label(drawer.DisplayName);
                 GUILayout.FlexibleSpace();
-                // GUILayout.Label("v0.0.1");
+                //GUILayout.Label("v0.0.1");
                 GUILayout.EndHorizontal();
                 Rect rect = GUILayoutUtility.GetLastRect();
                 if (mSelectedViewRender == drawer)

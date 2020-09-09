@@ -16,10 +16,10 @@ namespace LBFramework.PackageKit
 {
     public static class FrameworkMenuItems
     {
-        public const string Preferences = "QFramework/Preferences... %e";
-        public const string PackageKit = "QFramework/PackageKit... %#e";
+        public const string Preferences = "LBFramework/Preferences... %e";
+        public const string PackageKit = "LBFramework/PackageKit... %#e";
 
-        public const string Feedback = "QFramework/Feedback";
+        public const string Feedback = "LBFramework/Feedback";
     }
 
     public static class FrameworkMenuItemsPriorities
@@ -1069,7 +1069,7 @@ namespace LBFramework.PackageKit
             set { mValue = value; }
         }
     }
-
+    
     public class BoxView : View
     {
         public string Text;

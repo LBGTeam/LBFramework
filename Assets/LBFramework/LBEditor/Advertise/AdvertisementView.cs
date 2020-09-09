@@ -28,29 +28,13 @@ namespace LBFramework.PackageKit
 				.AddTo(mRootLayout);
 
 			new LabelView("技术支持").FontBold().FontSize(12).AddTo(verticalLayout);
-
-			new AdvertisementItemView("官方文档：《QFramework 使用指南 2020》",
-					"https://qframework.cn/doc")
-				.AddTo(verticalLayout);
-
-			new AdvertisementItemView("官方 qq 群：623597263",
-					"https://shang.qq.com/wpa/qunwpa?idkey=706b8eef0fff3fe4be9ce27c8702ad7d8cc1bceabe3b7c0430ec9559b3a9ce6")
-				.AddTo(verticalLayout);
-
-			new AdvertisementItemView("提问/提需求/提 Bug/社区",
-					"https://qframework.cn/community")
-				.AddTo(verticalLayout);
-
+			
 			new AdvertisementItemView("github",
-					"https://github.com/liangxiegame/QFramework")
+					"https://github.com/lianbai")
 				.AddTo(verticalLayout);
-
-			new AdvertisementItemView("gitee",
-					"https://gitee.com/liangxiegame/QFramework")
-				.AddTo(verticalLayout);
-
-			new AdvertisementItemView("Unity 开发者进阶班级：小班",
-					"https://liangxiegame.com/zhuanlan/list/89064995-924f-43cd-b236-3eb3eaa01aa0")
+			
+			new AdvertisementItemView("blog",
+					"lianbai.github.io")
 				.AddTo(verticalLayout);
 		}
 
@@ -61,8 +45,6 @@ namespace LBFramework.PackageKit
 
 		public void OnGUI()
 		{
-
-
 			mRootLayout.DrawGUI();
 		}
 
